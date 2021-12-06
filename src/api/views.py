@@ -4,6 +4,9 @@ __version__ = "1.0.0"
 __email__ = "mbianchetti at dc.uba.ar"
 __status__ = "Development"
 
+from django.shortcuts import get_object_or_404
+
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -19,8 +22,16 @@ def apiOverview(request):
     return Response(api_urls)
 
 
-@api_view(['GET'])
-def list_all(request):
-    books = Book.objects.all()
-    serializer = BookSerializer(books, many=True)
-    return Response(serializer.data)
+class CatalogViewSet(ModelViewSet):
+    serializer_class = BookSerializer
+
+    def get_object(self):
+        print(self)
+        return get_object_or_404(Book, id=self.request.query_params.get("id"))
+
+    def get_queryset(self):
+        return Book.objects.order_by('title')
+
+    # def perform_destroy(self, instance):
+    #     instance.is_active = False
+    #     instance.save()

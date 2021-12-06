@@ -10,12 +10,13 @@ const API_list = 'list';
  */
 function retrieveList() {
     let listWrapper = document.getElementById("list-wrapper");
-    console.log(listWrapper);
-    let url = `${API_URL}/${API_list}/`;
+    let url = `${API_URL}/${API_list}/all`;
 
     fetch(url)
     .then(response => response.json())
-    .then(books => {
+    .then(data => {
+      let books = data.results;
+      console.log(books);
       listWrapper.innerHTML += 
       `<div id="books-header" class="book-header-wrapper flex-wrapper">
         <div style="flex:3">
