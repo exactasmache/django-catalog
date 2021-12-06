@@ -10,4 +10,5 @@ from . import views
 
 urlpatterns = [
   path('', views.apiOverview, name='api-overview'),
+  path('list/', views.list_all, name='get-ist'),
 ]

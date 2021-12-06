@@ -38,7 +38,7 @@ INSTALLED_APPS = [
 
     # External
     'rest_framework',
-    
+
     # User defined
     'api',
     'frontend',

@@ -14,3 +14,11 @@ def apiOverview(request):
       'List': '/<catalog>/',
     }
     return Response(api_urls)
+
+
+@api_view(['GET'])
+def list_all(request):
+    list_all = {
+
+    }
+    return Response(list_all)
