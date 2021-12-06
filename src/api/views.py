@@ -7,6 +7,9 @@ __status__ = "Development"
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from .serializers import BookSerializer
+from .models import Book
+
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -18,7 +21,6 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def list_all(request):
-    list_all = {
-
-    }
-    return Response(list_all)
+    books = Book.objects.all()
+    serializer = BookSerializer(books, many=True)
+    return Response(serializer.data)

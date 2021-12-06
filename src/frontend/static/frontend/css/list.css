@@ -47,6 +47,17 @@ body {
   display: flex;
 }
 
+.book-header-wrapper {
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 4px solid #cfcfcf;
+  color: #000000;
+}
+
+.books-header {
+  font-weight: bold;
+}
+
 .book-wrapper {
   margin: 5px;
   padding: 20px;
