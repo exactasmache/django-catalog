@@ -17,6 +17,11 @@ const PK_KEYWORD = 'pk'
  *     Functions    *
  ********************/
 
+/**
+ * Generates the html with the list of books.
+ * 
+ * @param {List} books 
+ */
 function renderBookList(books) {
   let listWrapper = document.getElementById("list-wrapper");
 
@@ -54,6 +59,7 @@ function renderBookList(books) {
   for (i in books) {
     let book = document.getElementById(`book-title-${i}`);
     let title = book.innerText;
+    let id = books[i].id
 
     book.addEventListener('click', () => {
       let search_text = document.getElementById("search-input");
@@ -61,7 +67,7 @@ function renderBookList(books) {
       setSelected(title);
       
       // TODO I need the primary-key
-      let url = `${API_URL}/${API_list}/${API_similars}/?${PK_KEYWORD}=1`;
+      let url = `${API_URL}/${API_list}/${API_similars}/?${PK_KEYWORD}=${id}`;
       retrieveListFrom(url);
     });
   }

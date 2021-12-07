@@ -51,9 +51,15 @@ class SimilarsViewSet(ReadOnlyModelViewSet):
         if pk is None:
             return Book.objects.order_by('title')
 
-        # TODO: Return the similiar books.
-        # We could retrieve:
+        book = Book.objects.get(id=pk)
+
         # All the books for the same author.
-        # All the books that matches at least two title words
-        # etc...
-        return Book.objects.order_by('title')
+        q_filter = Q(author__id=book.author.id)
+
+        # All the books that matches at least one title word
+        for word in book.title.split():
+            q_filter |= Q(title__icontains=word)
+
+        q = Book.objects.filter(q_filter).order_by('title')
+
+        return q
