@@ -77,14 +77,18 @@ body {
   color: white;
 }
 
-.pagination a {
+.pagination button{
   color: white;
   background-color: teal;
   border-radius: 2px;
   float: left;
   padding: 7px 14px;
   margin: 10px;
-  text-decoration: none;
+  /* text-decoration: none; */
   transition: background-color .3s;
-  cursor: pointer;
+  /* cursor: pointer; */
+}
+
+.pagination button :disabled {
+  background-color: gray;
 }

@@ -25,9 +25,5 @@ def apiOverview(request):
 class CatalogViewSet(ModelViewSet):
     serializer_class = BookSerializer
 
-    def get_object(self):
-        print("Getting", self)
-        return get_object_or_404(Book, id=self.request.query_params.get("id"))
-
     def get_queryset(self):
         return Book.objects.order_by('title')
