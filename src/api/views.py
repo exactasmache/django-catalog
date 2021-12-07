@@ -26,12 +26,8 @@ class CatalogViewSet(ModelViewSet):
     serializer_class = BookSerializer
 
     def get_object(self):
-        print(self)
+        print("Getting", self)
         return get_object_or_404(Book, id=self.request.query_params.get("id"))
 
     def get_queryset(self):
         return Book.objects.order_by('title')
-
-    # def perform_destroy(self, instance):
-    #     instance.is_active = False
-    #     instance.save()

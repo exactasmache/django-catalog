@@ -65,3 +65,26 @@ body {
   border-bottom: 1px solid #e9e9e9;
   color: #686868;
 }
+
+.pagination {
+  position: -webkit-sticky;
+  margin: 0 auto;
+  display: flex;
+  margin-top: 30px;
+
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+}
+
+.pagination a {
+  color: white;
+  background-color: teal;
+  border-radius: 2px;
+  float: left;
+  padding: 7px 14px;
+  margin: 10px;
+  text-decoration: none;
+  transition: background-color .3s;
+  cursor: pointer;
+}
