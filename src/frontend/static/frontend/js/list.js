@@ -8,6 +8,7 @@ const API_URL = `${API_SCHEME}://${API_HOST}/${API_BASE}`;
 const API_list = 'list';
 
 const BOOKS_PER_PAGE = 3;
+const SEARCH_KEYWORD = 'search'
 
 
 /********************
@@ -62,7 +63,7 @@ function setBtnUrl(btn, url) {
 }
 
 
-function renderButtons(prev_url, next_url) {
+function renderPaginationButtons(prev_url, next_url) {
   let btnsWrapper = document.getElementById("pagination-wrapper");
   let buttons = `
     <button id="pag-prev">&laquo; Previous</button>
@@ -75,6 +76,12 @@ function renderButtons(prev_url, next_url) {
 
   setBtnUrl(prev_btn, prev_url);
   setBtnUrl(next_btn, next_url);
+}
+
+
+function configureContainer(data) {
+  renderBookList(data.results);
+  renderPaginationButtons(data.previous, data.next);
 }
 
 /**
@@ -91,16 +98,31 @@ function retrieveListFrom(url) {
     .then(data => {
       if (data === undefined) return;
 
-      renderBookList(data.results);
-      renderButtons(data.previous, data.next);
+      configureContainer(data);
     });
 };
 
+
+function configureSearchButton() {
+  let search_btn = document.getElementById("search-btn");
+  let search_text = document.getElementById("search-input");
+
+  search_btn.addEventListener('click', () => {
+    let url = `${API_URL}/${API_list}`;
+    if (search_btn.value == null) {
+      retrieveListFrom(url);
+    } else {
+      url += `/?${SEARCH_KEYWORD}=${search_text.value}`;
+      retrieveListFrom(url);
+    }
+  });
+}
 
 /******************
  * Event handlers *
  ******************/
 window.addEventListener('load', function () {
-  let url = `${API_URL}/${API_list}/all`;
+  let url = `${API_URL}/${API_list}`;
   retrieveListFrom(url);
+  configureSearchButton();
 });

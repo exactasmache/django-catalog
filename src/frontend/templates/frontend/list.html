@@ -19,17 +19,15 @@
   <div class="container">
     <div id="catalog-container">
       <div id="search-form-wrapper">
-        <form id="search-form">
-          <div class="flex-wrapper">
-            <div style="flex: 6">
-              <input id="search" type="text" class="form-control" name="search"
-                placeholder="Enter some text to search..." required>
-            </div>
-            <div style="flex: 1">
-              <input id="submit" type="submit" class="btn">
-            </div>
+        <div class="flex-wrapper">
+          <div style="flex: 6">
+            <input id="search-input" type="text" class="form-control" name="search"
+              placeholder="Enter some text to search...">
           </div>
-        </form>
+          <div style="flex: 1">
+            <button id="search-btn" class="btn">Search</button>
+          </div>
+        </div>
       </div>
 
       <div id="list-wrapper"></div>

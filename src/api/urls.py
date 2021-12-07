@@ -6,24 +6,12 @@ __status__ = "Development"
 
 from django.urls import path
 from django.conf.urls import url
+from django.urls.conf import re_path
 from . import views
 
 from .views import CatalogViewSet
 
 urlpatterns = [
     path('', views.apiOverview, name='api-overview'),
-    url(r'^book$', CatalogViewSet.as_view(
-        {
-            'get': 'retrieve',
-            'post': 'create',
-            'put': 'update',
-            'patch': 'partial_update',
-            'delete': 'destroy'
-        }
-    )),
-    url(r'^list/all$', CatalogViewSet.as_view(
-        {
-            'get': 'list',
-        }
-    )),
+    url(r'^list/$', CatalogViewSet.as_view({'get': 'list'})),
 ]
