@@ -13,6 +13,7 @@ from .serializers import BookSerializer
 from .models import Book
 
 SEARCH_KEYWORD = 'search'
+PK_KEYWORD = 'pk'
 
 
 @api_view(['GET'])
@@ -39,3 +40,20 @@ class CatalogViewSet(ReadOnlyModelViewSet):
         q = Book.objects.filter(q_filter).order_by('title')
 
         return q
+
+
+class SimilarsViewSet(ReadOnlyModelViewSet):
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        pk = self.request.query_params.get(PK_KEYWORD)
+
+        if pk is None:
+            return Book.objects.order_by('title')
+
+        # TODO: Return the similiar books.
+        # We could retrieve:
+        # All the books for the same author.
+        # All the books that matches at least two title words
+        # etc...
+        return Book.objects.order_by('title')

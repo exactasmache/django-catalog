@@ -9,9 +9,11 @@ from django.conf.urls import url
 from django.urls.conf import re_path
 from . import views
 
-from .views import CatalogViewSet
+from .views import CatalogViewSet, SimilarsViewSet
+
 
 urlpatterns = [
     path('', views.apiOverview, name='api-overview'),
     url(r'^list/$', CatalogViewSet.as_view({'get': 'list'})),
+    url(r'^list/similars/$', SimilarsViewSet.as_view({'get': 'list'})),
 ]

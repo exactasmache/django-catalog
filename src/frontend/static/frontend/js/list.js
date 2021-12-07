@@ -6,9 +6,11 @@ const API_HOST = 'localhost:8000';
 const API_BASE = `api`;
 const API_URL = `${API_SCHEME}://${API_HOST}/${API_BASE}`;
 const API_list = 'list';
+const API_similars = 'similars';
 
 const BOOKS_PER_PAGE = 3;
 const SEARCH_KEYWORD = 'search'
+const PK_KEYWORD = 'pk'
 
 
 /********************
@@ -35,18 +37,52 @@ function renderBookList(books) {
     let item = `
       <div id="book-row-${i}" class="book-wrapper flex-wrapper">
         <div style="flex:3">
-          <span class="book-title">${books[i].title}</span>
+          <span id="book-title-${i}" class="book-pointer">${books[i].title}</span>
         </div>
         <div style="flex:3">
-          <span class="book-title">${books[i].author}</span>
+          <span id="book-author-${i}" class="book-pointer">${books[i].author}</span>
         </div>
         <div style="flex:1">
-          <span class="book-title">${books[i].date_of_publication}</span>
+          <span id="book-date-${i}" class="book-pointer">${books[i].date_of_publication}</span>
         </div>
       </div>
     `;
 
     listWrapper.innerHTML += item;
+  }
+
+  for (i in books) {
+    let book = document.getElementById(`book-title-${i}`);
+    let title = book.innerText;
+
+    book.addEventListener('click', () => {
+      let search_text = document.getElementById("search-input");
+      search_text.value = '';
+      setSelected(title);
+      
+      // TODO I need the primary-key
+      let url = `${API_URL}/${API_list}/${API_similars}/?${PK_KEYWORD}=1`;
+      retrieveListFrom(url);
+    });
+  }
+}
+
+
+function setSelected(title) {
+  let selected = document.getElementById('selected-wrapper');
+  
+  if (title == null) {
+    let selected = document.getElementById('selected-wrapper');
+    selected.innerHTML = "";
+
+  } else {
+    selected.innerHTML = `
+      <div class="book-wrapper flex-wrapper">
+        <div style="flex:1">
+          <p>Selected: ${title}</p>
+        </div>
+      </div>
+    `
   }
 }
 
@@ -115,6 +151,7 @@ function configureSearchButton() {
       url += `/?${SEARCH_KEYWORD}=${search_text.value}`;
       retrieveListFrom(url);
     }
+    setSelected(null);
   });
 }
 

@@ -61,9 +61,13 @@ body {
 .book-wrapper {
   margin: 5px;
   padding: 20px;
-  cursor: pointer;
+  /* cursor: pointer; */
   border-bottom: 1px solid #e9e9e9;
   color: #686868;
+}
+
+.book-pointer {
+  cursor: pointer;
 }
 
 .pagination {
