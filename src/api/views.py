@@ -56,9 +56,13 @@ class CatalogViewSet(ReadOnlyModelViewSet):
         for word in book.title.split():
             q_filter |= Q(title__icontains=word)
 
+        q_filter &= ~Q(id=book.id)
+
         q = Book.objects.filter(q_filter).order_by('title')
+        page = self.paginate_queryset(q)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
 
-        paginated = self.paginate_queryset(q)
-        serializer = BookSerializer(paginated, many=True)
-
+        serializer = self.get_serializer(page, many=True)
         return Response(serializer.data)
