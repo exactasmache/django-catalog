@@ -26,9 +26,10 @@ class Book(models.Model):
     title = models.CharField(max_length=200, blank=False, null=False)
     date_of_publication = models.DateField(blank=False, null=False)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=False)
+
     keywords = models.CharField(max_length=200, validators=[
         RegexValidator(
-            r'([a-zA-Z]+)(,\s[a-zA-Z]+)*',
+            r'^([a-zA-Z]+)(,\s[a-zA-Z]+)*',
             message='Keywords must follow the format:'
             'word_1, word_2, ..., word_k'
         )])

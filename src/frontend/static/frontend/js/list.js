@@ -10,7 +10,6 @@ const API_similars = 'similars';
 
 const BOOKS_PER_PAGE = 3;
 const SEARCH_KEYWORD = 'search'
-const PK_KEYWORD = 'pk'
 
 
 /********************
@@ -65,9 +64,8 @@ function renderBookList(books) {
       let search_text = document.getElementById("search-input");
       search_text.value = '';
       setSelected(title);
-      
-      // TODO I need the primary-key
-      let url = `${API_URL}/${API_list}/${API_similars}/?${PK_KEYWORD}=${id}`;
+
+      let url = `${API_URL}/${API_similars}/${id}`;
       retrieveListFrom(url);
     });
   }
