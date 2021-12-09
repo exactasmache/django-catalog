@@ -11,7 +11,7 @@ const API_list = 'list';                                    // Endpoint that ret
 const API_similars = 'similars';                            // Endpoint that retrieves the
 // similar for a given book
 
-const BOOKS_PER_PAGE = 3;                                   // Limit for pagination
+const BOOKS_PER_PAGE = 10;                                   // Limit for pagination
 const SEARCH_KEYWORD = 'search';                            // Keyword for the freetext search
 const KEYWORDS_KEYWORD = 'keyword';                         // Keyword to search by keyword
 
