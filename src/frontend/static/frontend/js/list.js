@@ -11,7 +11,6 @@ const API_list = 'list';                                    // Endpoint that ret
 const API_similars = 'similars';                            // Endpoint that retrieves the
 // similar for a given book
 
-const BOOKS_PER_PAGE = 10;                                   // Limit for pagination
 const SEARCH_KEYWORD = 'search';                            // Keyword for the freetext search
 const KEYWORDS_KEYWORD = 'keyword';                         // Keyword to search by keyword
 
@@ -74,10 +73,12 @@ function renderBookList(books) {
 }
 
 /**
- * Indicates that the book of title 'title' is selected by adding 
+ * Shows the details for the book with id='id' by showing
  * an html into the div with id #selected-wrapper.
+ * It also adds event listeners to the keywords in order
+ * to allow searching by them.
  * 
- * @param {String} title : title of the selected book.
+ * @param {String} id : id of the selected book.
  */
 async function setSelected(id) {
   let selected = document.getElementById('selected-wrapper');

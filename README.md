@@ -42,4 +42,11 @@ python manage.py runserver
 ```
 
 When started and whenever the _Search_ button is pressed with not input in the search field, the main window list all the books paginated with 10 results per page.
-To see the details of a particular book just click on its row. The table is automatically filled by similar books. By clicking in the keywords, the system retrieves all books with those keywords.
+To see the details of a particular book just click on its row. The table is automatically filled by similar books. By clicking on each _keywords_, the system retrieves all books with that particular keyword.
+
+## Testing
+
+There are some integration tests for the API in the _api_ folder. They are executed with the following command (from the _src_ folder):
+```
+python manage.py test
+```

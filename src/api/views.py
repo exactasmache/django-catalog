@@ -18,7 +18,6 @@ from .models import Book
 
 SEARCH_KEYWORD = 'search'
 KEYWORDS_KEYWORD = 'keyword'
-PK_KEYWORD = 'pk'
 
 
 class CatalogViewSet(ReadOnlyModelViewSet):
@@ -26,7 +25,6 @@ class CatalogViewSet(ReadOnlyModelViewSet):
     queryset = Book.objects.all()
 
     def get_object(self):
-        pk = self.request.query_params.get(PK_KEYWORD)
         return super().get_object()
 
     def get_queryset(self):
