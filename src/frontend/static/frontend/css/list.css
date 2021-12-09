@@ -61,7 +61,6 @@ body {
 .book-wrapper {
   margin: 5px;
   padding: 20px;
-  /* cursor: pointer; */
   border-bottom: 1px solid #e9e9e9;
   color: #686868;
 }
@@ -90,9 +89,38 @@ body {
   margin: 10px;
   /* text-decoration: none; */
   transition: background-color .3s;
-  /* cursor: pointer; */
 }
 
 .pagination button :disabled {
   background-color: gray;
+}
+
+.details-title {
+  color: #686868;
+  margin: 5px;
+  padding: 10px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.suggestion-title {
+  color: #888787;
+  margin: 5px;
+  padding: 10px;
+}
+
+#book_keywords p {
+  color: rgb(2, 2, 148);
+  padding-right: 5px;
+  font-weight: bold;  
+  display: inline-block;
+  cursor: pointer;
+}
+
+#selected-wrapper {
+  background-color: rgb(230, 222, 213);
+}
+
+.selected-header {
+  font-weight: bold;
+  color: rgb(25, 21, 31);
 }

@@ -27,6 +27,8 @@ class Book(models.Model):
     date_of_publication = models.DateField(blank=False, null=False)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=False)
 
+    # This is probably best implemented with a jsonField
+    # We could store the genre as a keyword, for example.
     keywords = models.CharField(max_length=200, validators=[
         RegexValidator(
             r'^([a-zA-Z]+)(,\s[a-zA-Z]+)*',
